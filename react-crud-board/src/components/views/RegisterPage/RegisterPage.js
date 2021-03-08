@@ -1,39 +1,29 @@
 import React, { useState } from "react";
+import RegisterOrEdit from "./Sections/RegisterOrEdit";
 
 function RegisterPage() {
   const [TitleValue, setTitleValue] = useState("");
   const [ContentValue, setContentValue] = useState("");
+
   const onTitleChange = (event) => {
     setTitleValue(event.currentTarget.value);
   };
   console.log(TitleValue);
+
   const onContentChange = (event) => {
     setContentValue(event.currentTarget.value);
   };
   console.log(ContentValue);
 
   return (
-    <div>
-      <form onSubmit>
-        <br />
-        <label>Title: </label>
-        <input
-          onChange={onTitleChange}
-          value={TitleValue}
-          type="text"
-          name="title"
-        />
-        <hr></hr>
-        <div>
-          <textArea
-            onChange={onContentChange}
-            value={ContentValue}
-            name="content"
-          />
-        </div>
-        <button onClick>Submit</button>
-      </form>
-    </div>
+    <>
+      <RegisterOrEdit
+        titleValue={TitleValue}
+        contentValue={ContentValue}
+        handleTitleChange={onTitleChange}
+        handleContentChange={onContentChange}
+      />
+    </>
   );
 }
 
