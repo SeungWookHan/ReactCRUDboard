@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import BoardPage from "./components/views/BoardPage/BoardPage";
 import ArticlePage from "./components/views/ArticlePage/ArticlePage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
+import "./App.css";
 
 function App() {
   return (
