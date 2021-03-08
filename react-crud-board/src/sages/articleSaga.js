@@ -2,9 +2,19 @@
 // safaMiddleware로 덮어씌워줘야 함
 
 // generate 함수 만들기. saga는 generate 함수를 바탕으로 만들어야 함
+import { put } from "redux-saga/effects";
 import { articleActions } from "../slice/articleSlice";
 export function* registerArticleAsync(action) {
-  console.log(action);
+  //   console.log(action);
+  const data = action.payload;
   debugger;
-  yield console.log("finish");
+  //   yield console.log("finish");
+  yield put(articleActions.registerArticleAsync(data));
+  debugger;
 }
+//action.payload에 article 객체 값이 들어가 있음.
+// RegisterPage의 onSubmitArticle에서 설정해준 article임.
+
+// data라는 객체에 action.payload를 보관하고 registerArticleAsync 액션함수를 호출하면서
+// 해당 액션의 payload로 data를 다시 보내줌
+// put은 redux-saga 의 dispatch임
