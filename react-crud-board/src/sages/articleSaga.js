@@ -3,15 +3,19 @@
 
 // generate 함수 만들기. saga는 generate 함수를 바탕으로 만들어야 함
 import { put } from "redux-saga/effects";
+import Axios from "axios";
 import { articleActions } from "../slice/articleSlice";
+
 export function* registerArticleAsync(action) {
-  //   console.log(action);
   const data = action.payload;
-  debugger;
-  //   yield console.log("finish");
-  yield put(articleActions.registerArticleAsync(data));
-  debugger;
+
+  const postedData = yield Axios.post(`http://localhost:4000/board/`, data);
+
+  yield alert("저장되었습니다.");
+  
+  console.log(postedData);
 }
+
 //action.payload에 article 객체 값이 들어가 있음.
 // RegisterPage의 onSubmitArticle에서 설정해준 article임.
 

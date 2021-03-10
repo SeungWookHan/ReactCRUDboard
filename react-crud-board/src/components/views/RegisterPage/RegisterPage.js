@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RegisterOrEdit from "./Sections/RegisterOrEdit";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { articleActions } from "../../../slice/articleSlice";
 
 function RegisterPage() {
@@ -9,6 +9,13 @@ function RegisterPage() {
   const [IsForUpdate, setIsForUpdate] = useState(false);
 
   const dispatch = useDispatch(); // dispatch 훅 생성
+
+  // const views = useSelector((state) => state.articleReducers.views);
+  const { views, date, editDate } = useSelector((state) => ({
+    views: state.articleReducers.views,
+    date: state.articleReducers.date,
+    editDate: "",
+  }));
 
   const onTitleChange = (event) => {
     setTitleValue(event.currentTarget.value);
@@ -22,7 +29,28 @@ function RegisterPage() {
 
   const onSubmitArticle = (event) => {
     event.preventDefault();
-    const article = { title: TitleValue, content: ContentValue };
+
+    if (TitleValue === "" || TitleValue === null || TitleValue === undefined) {
+      alert("제목을 작성하십시오.");
+      return false;
+    }
+
+    if (
+      ContentValue === "" ||
+      ContentValue === null ||
+      ContentValue === undefined
+    ) {
+      alert("내용을 작성하십시오.");
+      return false;
+    }
+
+    const article = {
+      title: TitleValue,
+      content: ContentValue,
+      views: views,
+      date: date,
+      editDate: editDate,
+    };
     dispatch(articleActions.registerArticle(article));
   }; // 게시물 등록화면에서 내용 입력 후 등록을 누르면
   // 위 onSubmitArticle 이벤트를 타고 입력한 내용이 article로 담긴다.
