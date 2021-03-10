@@ -4,8 +4,13 @@ import createSagaMiddleware from "redux-saga"; // 사용할 미들웨어 import
 import logger from "redux-logger";
 import rootReducer from "./slice/rootSlice";
 import rootSaga from "./sages/rootSaga";
+// import { createBrowserHistory } from "history";
+import history from "./utils/history";
 
-const sagaMiddleware = createSagaMiddleware();
+// const customHistory = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware({
+  context: { history: history },
+});
 const initialState = {};
 
 const store = configureStore({

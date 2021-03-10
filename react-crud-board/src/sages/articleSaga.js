@@ -2,18 +2,25 @@
 // safaMiddleware로 덮어씌워줘야 함
 
 // generate 함수 만들기. saga는 generate 함수를 바탕으로 만들어야 함
-import { put } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import Axios from "axios";
 import { articleActions } from "../slice/articleSlice";
+import history from "../utils/history";
 
 export function* registerArticleAsync(action) {
   const data = action.payload;
 
-  const postedData = yield Axios.post(`http://localhost:4000/board/`, data);
+  const response = yield Axios.post(`http://localhost:4000/board/`, data);
 
   yield alert("저장되었습니다.");
-  
-  console.log(postedData);
+
+  console.log(response.data.id);
+
+  // const history = yield getContext("history");
+
+  // yield history.push(`/article/${response.data.id}`);
+
+  history.push(`/article/${response.data.id}`, response.data.id);
 }
 
 //action.payload에 article 객체 값이 들어가 있음.
