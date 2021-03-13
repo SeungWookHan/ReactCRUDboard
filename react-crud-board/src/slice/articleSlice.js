@@ -21,13 +21,19 @@ export const articleSlice = createSlice({
       //   id: state.id,
       // };
     },
-    registerArticleAsync: (state, { payload }) => {
-      // 서버 저장 후 게시물을 불러오는데 사용
-      console.log(payload);
-      debugger;
+    getArticle: (state, { payload: id }) => {
+      onsole.log(id); // saga에서 감시용
+    },
+    getArticleAsync: (state, { payload: article }) => {
+      console.log(article); // saga에서 호출용
       return {
         ...state,
-        id: payload.id,
+        id: article.id,
+        title: article.title,
+        content: article.content,
+        date: article.date,
+        editDate: article.editDate,
+        views: article.views,
       };
     },
   },

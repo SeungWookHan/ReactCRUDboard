@@ -23,6 +23,13 @@ export function* registerArticleAsync(action) {
   history.push(`/article/${response.data.id}`, response.data.id);
 }
 
+export function* getArticleAsync(action) {
+  const id = action.payload;
+  const response = yield Axios.get(`http://localhost:4000/board/${id}`);
+  console.log(response.data);
+  yield put(articleActions.getArticleAsync(response.data));
+}
+
 //action.payload에 article 객체 값이 들어가 있음.
 // RegisterPage의 onSubmitArticle에서 설정해준 article임.
 
