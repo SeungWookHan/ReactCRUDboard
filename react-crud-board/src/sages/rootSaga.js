@@ -3,17 +3,18 @@
 
 // generate 함수는 function 뒤에 *이 붙은 모양이고 함수내 yield 필수
 
-import { takeLatest } from "redux-saga/effects";
+import { takeEvery, takeLatest } from "redux-saga/effects";
 import { articleActions } from "../slice/articleSlice";
-import { registerArticleAsync } from "./articleSaga"; 
+import { registerArticleAsync, getArticleAsync } from "./articleSaga";
 
-const { registerArticle } = articleActions;
+const { registerArticle, getArticle } = articleActions;
 
 export default function* rootWatcher() {
   yield takeLatest(registerArticle.type, registerArticleAsync);
+  yield takeEvery(getArticle.type, getArticleAsync);
 }
-// registerArticle 액션 생성함수로 호출된 것을 캐치하여 registerArticleAsync 호출되게
 
+// registerArticle 액션 생성함수로 호출된 것을 캐치하여 registerArticleAsync 호출되게
 
 // 뷰에서 registerArticle 액션생성함수를 dispatch하게 되면
 // articleSaga의 registerArticleAsync함수를 호출

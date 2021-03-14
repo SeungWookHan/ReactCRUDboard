@@ -22,7 +22,7 @@ export const articleSlice = createSlice({
       // };
     },
     getArticle: (state, { payload: id }) => {
-      onsole.log(id); // saga에서 감시용
+      console.log(id); // saga에서 감시용
     },
     getArticleAsync: (state, { payload: article }) => {
       console.log(article); // saga에서 호출용
