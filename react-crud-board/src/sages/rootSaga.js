@@ -5,13 +5,16 @@
 
 import { takeEvery, takeLatest } from "redux-saga/effects";
 import { articleActions } from "../slice/articleSlice";
+import { boardActions } from "../slice/boardSlice";
 import { registerArticleAsync, getArticleAsync } from "./articleSaga";
+import { getBoardAsync } from "./boardSaga";
 
 const { registerArticle, getArticle } = articleActions;
-
+const { getBoard } = boardActions;
 export default function* rootWatcher() {
   yield takeLatest(registerArticle.type, registerArticleAsync);
   yield takeEvery(getArticle.type, getArticleAsync);
+  yield takeEvery(getBoard.type, getBoardAsync);
 }
 
 // registerArticle 액션 생성함수로 호출된 것을 캐치하여 registerArticleAsync 호출되게

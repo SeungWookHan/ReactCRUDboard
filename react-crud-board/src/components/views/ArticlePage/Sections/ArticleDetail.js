@@ -1,7 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Button, Typography } from "antd";
+
+const { Title } = Typography;
+
 function ArticleDetail(props) {
   return (
     <div style={{ width: "80%", margin: "3rem auto" }}>
+      <div style={{ margin: "2rem auto" }}>
+        <Link to="/">
+          <Button type="primary">목록으로 가기</Button>
+        </Link>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <Title>게시글</Title>
+      </div>
       <div style={{ textAlign: "center" }}>
         <h1>게시글</h1>
       </div>
